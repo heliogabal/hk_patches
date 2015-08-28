@@ -1,0 +1,21 @@
+diff --git a/includes/entity.inc b/includes/entity.inc
+index 62359a9..747a1f9 100755
+--- a/includes/entity.inc
++++ b/includes/entity.inc
+@@ -385,7 +385,15 @@ class DrupalDefaultEntityController implements DrupalEntityControllerInterface {
+     // Load any available entities from the internal cache.
+     if (!empty($this->entityCache)) {
+       if ($ids) {
+-        $entities += array_intersect_key($this->entityCache, array_flip($ids));
++        $flip = array();
++
++        foreach ($ids as $key => $value) {
++          if (is_string($value) || is_numeric($value)) {
++            $flip[$value] = $key;
++          }
++        }
++
++        $entities += array_intersect_key($this->entityCache, $flip);
+       }
+       // If loading entities only by conditions, fetch all available entities
+       // from the cache. Entities which don't match are removed later.

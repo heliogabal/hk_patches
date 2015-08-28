@@ -1,0 +1,14 @@
+diff --git a/sites/all/modules/contrib/search_api_solr/includes/service.inc b/sites/all/modules/contrib/search_api_solr/includes/service.inc
+index 7e728f2..aeaad46 100755
+--- a/sites/all/modules/contrib/search_api_solr/includes/service.inc
++++ b/sites/all/modules/contrib/search_api_solr/includes/service.inc
+@@ -869,6 +869,9 @@ class SearchApiSolrService extends SearchApiAbstractService {
+       // The fields to look for similarities in.
+       $mlt_fl = array();
+       foreach($mlt['fields'] as $f) {
++        if (!isset($fields[$f])) {
++          continue;
++        }
+         // Solr 4 has a bug which results in numeric fields not being supported
+         // in MLT queries.
+         // Date fields don't seem to be supported at all.
