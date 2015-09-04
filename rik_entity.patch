@@ -1,0 +1,13 @@
+diff --git a/views/handlers/entity_views_field_handler_helper.inc b/views/handlers/entity_views_field_handler_helper.inc
+index 0077f4a..7f5dc4f 100644
+--- a/views/handlers/entity_views_field_handler_helper.inc
++++ b/views/handlers/entity_views_field_handler_helper.inc
+@@ -442,7 +442,7 @@ class EntityFieldHandlerHelper {
+         return NULL;
+ 
+       case 'count':
+-        return count($list);
++        return count(entity_load('node', $list, array('status' => NODE_PUBLISHED)));
+ 
+       // Handles both collapse and list output. Fallback is to collapse.
+       default:
