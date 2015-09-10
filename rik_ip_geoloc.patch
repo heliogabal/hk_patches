@@ -1,5 +1,5 @@
 diff --git a/views/ip_geoloc_plugin_style.inc b/views/ip_geoloc_plugin_style.inc
-index deb7012..1fdfcaa 100644
+index deb7012..46399fb 100644
 --- a/views/ip_geoloc_plugin_style.inc
 +++ b/views/ip_geoloc_plugin_style.inc
 @@ -703,7 +703,7 @@ function ip_geoloc_plugin_style_extract_locations($views_plugin_style) {
@@ -7,7 +7,7 @@ index deb7012..1fdfcaa 100644
            if (isset($aggregation_field)) {
              $value = ip_geoloc_get_view_result($views_plugin_style, $aggregation_field, $i);
 -            $location->aggregation_value = empty($is_count) ? reset($value) : count($value);
-+            $location->aggregation_value = empty($is_count) ? reset($value) : count(entity_load('node', $value, array('status' => NODE_PUBLISHED)));
++            $location->aggregation_value = empty($is_count) ? reset($value) : count(entity_load('node', $value, array('status' => NODE_PUBLISHED, 'type' => array('apartment'))));
            }
            $locations[$j ? "$i.$j" : $i] = $location;
            $j++;
@@ -16,7 +16,7 @@ index deb7012..1fdfcaa 100644
              if (isset($aggregation_field)) {
                $value = ip_geoloc_get_view_result($views_plugin_style, $aggregation_field, $i);
 -              $location->aggregation_value = empty($is_count) ? reset($value) : count($value);
-+              $location->aggregation_value = empty($is_count) ? reset($value) : count(entity_load('node', $value, array('status' => NODE_PUBLISHED)));
++              $location->aggregation_value = empty($is_count) ? reset($value) : count(entity_load('node', $value, array('status' => NODE_PUBLISHED, 'type' => array('apartment'))));
              }
              $locations[$j ? "$i.$j" : $i] = $location;
              $j++;
